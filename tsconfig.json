@@ -1,0 +1,17 @@
+{
+   "extends": "@tsconfig/node18/tsconfig.json",
+   "compilerOptions": {
+      "noImplicitAny": true,
+      "strictNullChecks": true,
+      "importsNotUsedAsValues": "error",
+      "sourceMap": true,
+      "strict": true,
+      "resolveJsonModule": true,
+      "outDir": "dist",
+      "module": "NodeNext",
+      "moduleResolution": "NodeNext"
+   },
+   "include": [
+      "src/**/*"
+   ]
+}
