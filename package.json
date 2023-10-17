@@ -1,6 +1,6 @@
 {
   "name": "bloop-server-tester",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI tool for testing bloop servers",
   "type": "module",
   "scripts": {
