@@ -10,7 +10,7 @@ class Client {
     public constructor(private readonly stream : BufferedStream<TLSSocket>) {
     }
 
-    public static async fromAuthString(authString : string, validateCert : boolean) : Promise<Client> {
+    public static async fromAuthString(authString : string, validateCert ?: boolean) : Promise<Client> {
         const parseResult = authStringRegex.exec(authString);
 
         if (!parseResult) {
@@ -20,7 +20,7 @@ class Client {
         const [, clientId, clientSecret, host, port] = parseResult;
 
         const socket = await new Promise<TLSSocket>((resolve, reject) => {
-            const socket = connect({port: parseInt(port, 10), host, rejectUnauthorized: validateCert}, () => {
+            const socket = connect({port: parseInt(port, 10), host, rejectUnauthorized: validateCert ?? false}, () => {
                 resolve(socket);
             });
 

@@ -32,7 +32,7 @@ program
     .name('bloop-server-tester')
     .description('CLI tool for testing bloop servers')
     .version(packageJson.version)
-    .option('-C, --validate-cert', 'validate server certificate', false);
+    .option('-C, --validate-cert', 'validate server certificate');
 
 program
     .command('auth')

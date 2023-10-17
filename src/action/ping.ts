@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import Client from '../network/Client.js';
 
 type Options = {
-    validateCert : boolean;
+    validateCert ?: boolean;
     iterations : number;
 };
 
