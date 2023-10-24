@@ -30,10 +30,12 @@ class Client {
         });
 
         const stream = new BufferedStream(socket);
-
-        const credentials = `${clientId}:${clientSecret}`;
-        stream.writeUint8(credentials.length);
-        stream.writeAll(Buffer.from(credentials, 'ascii'));
+        stream.writeUint8(clientId.length);
+        stream.writeAll(Buffer.from(clientId, 'ascii'));
+        stream.writeUint8(clientSecret.length);
+        stream.writeAll(Buffer.from(clientSecret, 'ascii'));
+        stream.writeUint8(4);
+        stream.writeAll(Buffer.from([192, 168, 0, 1]));
 
         const result = await stream.readUint8();
 
@@ -62,7 +64,7 @@ class Client {
         const achievements = [];
 
         for (let i = 0; i < numAchievements; ++i) {
-            achievements.push(await this.stream.readExact(20));
+            achievements.push(await this.stream.readExact(16));
         }
 
         return achievements;
@@ -74,6 +76,7 @@ class Client {
     }
 
     public disconnect() : void {
+        this.stream.writeUint8(0x03);
         this.stream.close();
     }
 }
